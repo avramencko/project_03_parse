@@ -53,7 +53,6 @@ public class Parser {
     private Product parseElement(Element el) throws IOException {
         Product product = new Product();
         String scalematesUrl = el.select("div.ar > a").first().attr("href");
-//        System.out.println("scalematesUrl: " + scalematesUrl);
         product.setScalematesUrl(scalematesUrl);
 
         String brandAndScale = (el.select("div.ar").html().split("<br>"))[1];
@@ -68,21 +67,16 @@ public class Parser {
         else
             scale = 1;
 
-//        System.out.println("brand: " + brand);
-//        System.out.println("scale: " + scale);
         product.setBrand(brand);
         product.setScale(scale);
 
         String brandCatno = clear(((el.select("div.ar").html().split("<br>"))[2].split("\n"))[0].toUpperCase());
-//        System.out.println("brandCatno: " + brandCatno);
         product.setBrandCatno(brandCatno);
 
         String name = el.select("div.ar > a").text() + " " + el.select("div.ar > em").text();
-//        System.out.println("name: " + name);
         product.setName(name);
 
         String boxartUrl = deleteSize(el.select("a.al > img").attr("src"));
-//        System.out.println("boxartUrl: " + boxartUrl);
         product.setBoxartUrl(boxartUrl);
 
         String yearAndDescription = el.select("div.ar > div.nw").text();
@@ -95,8 +89,7 @@ public class Parser {
             description = yearAndDescription.substring(i + 1);
         } else
             year = yearAndDescription;
-//        System.out.println("description: " + description);
-//        System.out.println("year: " + year);
+
         product.setDescription(description);
         product.setYear(year);
 
