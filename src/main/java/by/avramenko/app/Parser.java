@@ -36,7 +36,7 @@ public class Parser {
         productList.clear();
         while (count < n) {
             Document doc;
-            doc = Jsoup.connect(getUrl(count)).get();
+            doc = Jsoup.connect(getUrl(count)).timeout(10*1000).get();
             Elements elements = doc.select("div.ac");
             for (Element element : elements) {
                 if (count < n) {
